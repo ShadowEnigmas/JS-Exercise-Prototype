@@ -40,25 +40,22 @@ Airplane.prototype.land = function () {
 */
 
 function Person(attributes) {
-  this.name = attributes.name;
-  this.age = attributes.age;
+  this.name = 'Neo';
+  this.age = 20;
   this.stomach = [];
-  this.eat = function (someFood)
-  {
-    if (this.stomach.length < 10) {
-      this.stomach.push(someFood);
-    }
-  }
-  this.poop = function ()
-  {
-    for (let i = this.stomach.length; i > 0; i--)
-    {
-      this.stomach.pop();
-    }
+}
+let neoPerson = new Person( {name: 'Neo', age: 20});
+Person.prototype.eat = function (someFood){
+  if (this.stomach.length < 10) {
+    this.stomach.push(someFood);
   }
 }
-Person.prototype.toString = function() 
-{
+Person.prototype.poop = function (){
+  for (let i = this.stomach.length; i > 0; i--){
+    this.stomach.pop();
+  }
+}
+Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`
 }
 
