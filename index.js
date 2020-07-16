@@ -39,12 +39,11 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person(attributes) {
-  this.name = 'Neo';
-  this.age = 20;
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
   this.stomach = [];
 }
-let neoPerson = new Person( {name: 'Neo', age: 20});
 Person.prototype.eat = function (someFood){
   if (this.stomach.length < 10) {
     this.stomach.push(someFood);
@@ -58,6 +57,7 @@ Person.prototype.poop = function (){
 Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`
 }
+let Neo = new Person('Neo', 20)
 
 /*
   TASK 2
@@ -73,10 +73,29 @@ Person.prototype.toString = function() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0
 }
-
+Car.prototype.fill = function(gallons) {
+  this.tank = this.tank + gallons;
+  return this.tank;
+}
+Car.prototype.drive = function(miles) {
+  
+  if((miles / this.milesPerGallon) < this.tank) {
+    this.odometer = this.odometer + miles;
+    this.tank = this.tank - (miles / this.milesPerGallon)
+    return this.tank, this.odometer;
+  } else {
+    console.log("You don't have enough gas!");
+  }
+  
+}
+const Batmobile = new Car('Batmobile', 20)
+Batmobile.fill(10);
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -84,9 +103,17 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`
+}
+const Lucy = new Baby('Lucy', 5, 'trains')
+
 
 /* 
   TASK 4
