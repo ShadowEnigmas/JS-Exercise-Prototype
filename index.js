@@ -119,10 +119,10 @@ const Lucy = new Baby('Lucy', 5, 'trains')
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. refer to current object
+  2. refer current class instance variables
+  3. initiate class constructor
+  4. use to pass in a method call arguement
 */
 
 
